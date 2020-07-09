@@ -27,7 +27,8 @@ module LIS_pluginIndices
 !  22 May 2013: Shugong Wang, added FLAKE.1.0  
 !  27 Jan 2014: Shugong Wang, added HRAP projection
 !   4 Nov 2014: Jonathan Case, added support for daily NESDIS/VIIRS GVF for Noah
-!  16 Aug 2016: Mahdi Navari, added PILDAS  
+!  16 Aug 2016: Mahdi Navari, added PILDAS
+!  9 Jul 2020: Hans Lievens, added S1 snow depth DA  
 !
 !EOP
   PRIVATE
@@ -244,6 +245,7 @@ module LIS_pluginIndices
    character*50, public,  parameter :: LIS_ANSASNWDsnowobsId   = "ANSA snow depth"
    character*50, public,  parameter :: LIS_SMMRSNWDsnowobsId   = "SMMR snow depth"
    character*50, public,  parameter :: LIS_SSMISNWDsnowobsId   = "SSMI snow depth"
+   character*50, public,  parameter :: LIS_S1_SNWD_obsId       = "S1 snow depth" !Hans Lievens
    character*50, public,  parameter :: LIS_AMSREsweobsId       = "AMSR-E SWE"
 !   character*50, public,  parameter :: LIS_AMSREsnowobsId      = "AMSR-E snow" !yliu
    character*50, public,  parameter :: LIS_PMWsnowobsId        = "PMW snow" !yliu

@@ -1152,6 +1152,7 @@ endif::devonly[]
 |"`ANSA snow depth`"            | ANSA snow depth
 |"`SMMR snow depth`"            | SMMR snow depth
 |"`SMMI snow depth`"            | SMMI snow depth
+|"`S1 snow depth`"              | S1 snow depth
 ifdef::devonly[]
 |"`AMSR-E SWE`"                 | AMSR-E SWE
 endif::devonly[]
@@ -2308,6 +2309,20 @@ SSMI snow depth MOD10C1 data directory:
 
 
 ifdef::devonly[]
+
+
+==== S1 snow depth Assimilation
+anchor:sssec_s1snowdepthda[S1 snow depth Assimilation]
+
+`S1 snow depth data directory:` specifies the directory for the
+S1 snow depth data.
+
+.Example _lis.config_ entry
+....
+S1 snow depth data directory:                  ./S1
+....
+
+
 
 ==== AMSR-E SWE Assimilation
 anchor:sssec_amsresweda[AMSR-E SWE Assimilation]

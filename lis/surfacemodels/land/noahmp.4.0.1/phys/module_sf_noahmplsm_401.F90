@@ -6122,8 +6122,8 @@ ENDIF   ! CROPTYPE == 0
    enddo
 
 !to obtain equilibrium state of snow in glacier region
-       
-   IF(SNEQV > 2000.) THEN   ! 2000 mm -> maximum water depth
+!S1_SNWD: Hans Lievens added condition to avoid division by zero       
+   IF(SNEQV > 2000. .AND. DZSNSO(0) > 0.0001 ) THEN   ! 2000 mm -> maximum water depth
       BDSNOW      = SNICE(0) / DZSNSO(0)
       SNOFLOW     = (SNEQV - 2000.)
       SNICE(0)    = SNICE(0)  - SNOFLOW 

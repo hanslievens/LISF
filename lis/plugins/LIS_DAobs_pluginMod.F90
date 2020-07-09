@@ -97,9 +97,11 @@ contains
 ! !INTERFACE:
 subroutine LIS_DAobs_plugin
 !EOP
+! S1_SNWD: Hans Lievens added DA_PF: to be checked
 #if ( ( defined DA_DIRECT_INSERTION ) || \
       ( defined DA_ENKS )             || \
-      ( defined DA_ENKF ) )
+      ( defined DA_ENKF )             || \
+      ( defined DA_PF ) )
 
    use LIS_pluginIndices
 
@@ -194,6 +196,11 @@ subroutine LIS_DAobs_plugin
 
 #if ( defined DA_OBS_SSMI_SNWD )
    use SSMISNWDsnow_Mod,        only : SSMISNWDsnow_setup
+#endif
+
+!S1_SNWD: Hans Lievens added S1 snow depth DA
+#if ( defined DA_OBS_S1_SNWD )
+   use S1_SNWD_Mod,        only : S1_SNWD_setup
 #endif
 
 #if ( defined DA_OBS_GCOMW_AMSR2L3SND )
@@ -333,6 +340,11 @@ subroutine LIS_DAobs_plugin
 
 #if ( defined DA_OBS_SSMI_SNWD )
    external read_SSMISNWDsnow, write_SSMISNWDsnowobs
+#endif
+
+!S1_SNWD: Hans Lievens added S1 snow depth obs
+#if ( defined DA_OBS_S1_SNWD )
+   external read_S1_SNWD, write_S1_SNWDobs
 #endif
 
 #if ( defined DA_OBS_ANSA_SNWD )
@@ -530,6 +542,17 @@ subroutine LIS_DAobs_plugin
         read_SMMRSNWDsnow)
    call registerwritedaobs(trim(LIS_SMMRSNWDsnowobsId)//char(0), &
         write_SMMRSNWDsnowobs)
+#endif
+
+!S1_SNWD: Hans Lievens added S1 snow depth case
+#if ( defined DA_OBS_S1_SNWD )
+!S1 SNWD snow obs
+   call registerdaobssetup(trim(LIS_S1_SNWD_obsId)//char(0), &
+        S1_SNWD_setup)
+   call registerreaddaobs(trim(LIS_S1_SNWD_obsId)//char(0),  &
+        read_S1_SNWD)
+   call registerwritedaobs(trim(LIS_S1_SNWD_obsId)//char(0), &
+        write_S1_SNWDobs)
 #endif
 
 #if ( defined DA_OBS_SSMI_SNWD )

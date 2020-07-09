@@ -270,9 +270,10 @@ subroutine noahmp401_snow_update(n, t, dsneqv, dsnowh)
      dzsnso(iz)= 0.
      zsnso(iz) = 0.
   enddo
-  
+ 
   !to obtain equilibrium state of snow in glacier region
-  if(sneqv > 2000.) then   ! 2000 mm -> maximum water depth
+  !S1_SNWD: Hans Lievens added condition to avoid division by zero
+  if(sneqv > 2000. .and. dzsnso(0) > 0.0001) then   ! 2000 mm -> maximum water depth
      bdsnow      = snice(0) / dzsnso(0)
      snoflow     = (sneqv - 2000.)
      snice(0)    = snice(0)  - snoflow

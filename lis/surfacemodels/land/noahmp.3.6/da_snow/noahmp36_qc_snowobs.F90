@@ -87,17 +87,17 @@ subroutine noahmp36_qc_snowobs(n,k,OBS_State)
        vegt,&
        vegt_obs)
 
-
+! S1_SNWD: switch off snow masking in case of vegetation
   do t=1,LIS_rc%obs_ngrid(k)
      if(snowobs(t).ne.LIS_rc%udef) then 
-        if(fveg_obs(t).gt.0.7) then 
-           snowobs(t) = LIS_rc%udef        
-        elseif(vegt_obs(t).le.4) then !forest types
-           snowobs(t) = LIS_rc%udef
+!        if(fveg_obs(t).gt.0.7) then 
+!           snowobs(t) = LIS_rc%udef        
+!        elseif(vegt_obs(t).le.4) then !forest types
+!           snowobs(t) = LIS_rc%udef
 !assume that snow will not form at 5 deg. celcius or higher ground temp. 
-       elseif(tv_obs(t).ge.278.15) then 
+        if(tv_obs(t).ge.278.15) then 
            snowobs(t) = LIS_rc%udef
-       elseif(stc1_obs(t).ge.278.15) then 
+        elseif(stc1_obs(t).ge.278.15) then 
            snowobs(t) = LIS_rc%udef
         endif
      endif
